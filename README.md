@@ -1,20 +1,64 @@
-# influence-curriculum-lean4
-We present a data-centric study of automated theorem proving in Lean 4, using influence functions
-to quantify the contribution of individual training examples and systematically comparing data pruning
-and curriculum learning strategies. We fine-tune a Qwen2.5-0.5B-Instruct model with QLoRA on 8,497
-theorem–proof pairs from the NuminaMath-LEAN dataset and compute per-sample influence scores
-via the DataInf diagonal approximation. Based on these scores, we evaluate 19 strategies spanning
-three families: traditional curriculum learning, influence-based curriculum ordering, and data pruning,
-on the MiniF2F benchmark. Our results reveal three principal findings. First, the absolute-influence
-descending curriculum (Abs Influence Desc), which prioritizes training samples by the magnitude of
-their influence scores regardless of sign, achieves the best overall performance: pass@1 = 4.58% and
-pass@8 = 16.67%, representing a 5→ improvement in pass@8 over the default baseline (3.33%). Second,
-among traditional curriculum strategies, the easy-to-hard ordering attains the strongest results (pass@1
-= 3.33%, pass@8 = 10.00%), outperforming random shuffling by approximately 4→ in pass@1 and
-1.5→ in pass@8, and confirming the benefit of progressive difficulty scheduling. Third, data pruning is
-consistently counterproductive: all five pruning strategies either match or underperform the no-pruning
-baseline (pass@1 ↑ 0.83%), demonstrating that data diversity is more important than data purity for
-theorem proving. Correlation analysis reveals that proof length is the strongest predictor of influence
-(Spearman ω = 0.474), and that helpful samples are on average 7→ longer than harmful ones. These
-findings validate influence functions as a practical tool for data selection and underscore the primacy of
-data ordering over data removal in formal reasoning tasks.
+# 🚀 Influence-Guided Curriculum Learning for Lean4 Theorem Proving
+
+## 📌 Overview
+
+We present a **data-centric approach to automated theorem proving in Lean 4**, leveraging **influence functions** to quantify the contribution of individual training samples and guide data selection.
+
+Our framework fine-tunes **Qwen2.5-0.5B-Instruct (QLoRA)** on **8,497 theorem–proof pairs** from the NuminaMath-LEAN dataset, and computes per-sample influence scores using the **DataInf approximation**. Based on these signals, we systematically explore how **data ordering and selection strategies** impact reasoning performance.
+
+---
+
+## 🔥 Key Results
+
+- 🥇 **Best Strategy: Abs Influence Desc (Ours)**
+  - pass@1: **4.58%**
+  - pass@8: **16.67%**
+  - 🚀 **~5× improvement over baseline (3.33%)**
+
+- 📈 **Curriculum Learning Works**
+  - Easy → Hard outperforms random:
+    - ~4× improvement in pass@1  
+    - ~1.5× improvement in pass@8  
+
+- ❌ **Data Pruning Fails**
+  - All pruning strategies underperform or match baseline  
+  - 👉 **Data diversity > data purity**
+
+---
+
+## 📊 Strategy Comparison
+
+![Strategy Comparison](./assets/strategy_comparison.png)
+
+> Comparison of 19 data strategies on MiniF2F benchmark
+
+---
+
+## 📉 Influence Analysis
+
+![Influence vs Length](./assets/influence_length.png)
+
+- Influence strongly correlates with proof length (**Spearman ω = 0.474**)  
+- High-value samples are ~**7× longer** than low-value samples  
+- 👉 Influence ≈ **information content**
+
+---
+
+## 🧠 Key Insights
+
+- Not all data contributes equally — **influence provides a practical data valuation signal**
+- **Data ordering is more important than data filtering**
+- Longer and more complex proofs carry richer learning signals
+
+---
+
+## 🧪 Experimental Setup
+
+- **Model:** Qwen2.5-0.5B-Instruct (QLoRA)
+- **Dataset:** NuminaMath-LEAN (8,497 samples)
+- **Benchmark:** MiniF2F
+- **Method:** DataInf influence approximation
+
+---
+
+## 🏗️ Project Structure
