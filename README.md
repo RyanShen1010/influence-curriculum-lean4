@@ -63,16 +63,15 @@ Our framework fine-tunes **Qwen2.5-0.5B-Instruct (QLoRA)** on **8,497 theorem–
 
 ## 🏗️ Project Structure
 lean4-influence-curriculum/
-├── README.md
-
-├── final_report/ # Analysis and experimental results
-│ └── (reports, tables, logs)
-
-├── assets/ # Figures for README / paper
-│ ├── strategy_comparison.png
-│ ├── influence_length.png
-
-├── scripts/ # Training & evaluation notebooks
-│ ├── influence_compute_traditional_curriculum.ipynb
-│ ├── influence_based_training.ipynb
-│ ├── minif2f_eval_lean4.ipynb
+├── README.md                         # Project overview
+├── final_report/                     # Analysis and experimental results
+│   ├── reports/                      # Detailed analysis reports
+│   ├── tables/                       # Data tables
+│   └── logs/                         # Execution logs
+├── assets/                           # Figures for README 
+│   ├── strategy_comparison.png       # Strategy comparison chart
+│   └── influence_length.png          # Influence length analysis
+└── scripts/                          # Training & evaluation notebooks
+    ├── influence_compute_traditional_curriculum.ipynb   # Traditional curriculum influence computation
+    ├── influence_based_training.ipynb                   # Influence‑based training
+    └── minif2f_eval_lean4.ipynb                         # MiniF2F evaluation for Lean 4
